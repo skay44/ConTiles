@@ -5,7 +5,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "genericList.h"
+
 #include "variables.h"
 
 #endif //UTILS_H

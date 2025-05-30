@@ -42,4 +42,6 @@ void printAllData(GenericList* list);
 
 int getListSize(GenericList* list);
 
+//TODO removing at index, inserting in first empty place
+
 #endif //GENERICLIST_H
