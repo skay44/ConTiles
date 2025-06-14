@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.30)
-project(Calculator C)
+project(ConTiles C)
 
 set(CMAKE_C_STANDARD 23)
 
@@ -17,9 +17,9 @@ set(SOURCES main.c
         ${LOGGER}
 )
 
-add_executable(Calculator ${SOURCES})
+add_executable(ConTiles ${SOURCES})
 
-target_include_directories(Calculator PRIVATE
+target_include_directories(ConTiles PRIVATE
         controller
         model
         util
