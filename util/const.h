@@ -22,8 +22,6 @@
 	#define USING_LINUX
 #endif
 
-#endif //CONST_H
-
 #ifdef USING_WINDOWS
 	#include <windows.h>
 #endif
@@ -32,4 +30,8 @@
 	#include <sys/ioctl.h>
 	#include <unistd.h>
 #endif
+
+#define FILE_LENGTH 256
+
+#endif //CONST_H
 

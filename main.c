@@ -4,6 +4,8 @@
 #include "column.h"
 #include "row.h"
 #include "screen.h"
+#include "logger/logger.h"
+#include <signal.h>
 
 
 void listTest() {
@@ -34,21 +36,32 @@ void listTest() {
     printAllData(&list_int);
 }
 
-
-
-int main(void) {
-    Screen mainScreen;
-    initializeScreen(&mainScreen);
-
-    addColumnToScreen(&mainScreen,1,0x1,0x10);
-    addColumnToScreen(&mainScreen,5,0x2,0x20);
-    Column* red_column = addColumnToScreen(&mainScreen,3,0x4,0x40);
+void demoLayout(Screen* mainScreen) {
+    addColumnToScreen(mainScreen,1,0x1,0x10);
+    addColumnToScreen(mainScreen,5,0x2,0x20);
+    Column* red_column = addColumnToScreen(mainScreen,3,0x4,0x40);
 
     addRowToColumn(red_column,2,0x1,0x10);
     addRowToColumn(red_column,2,0x2,0x20);
     addRowToColumn(red_column,4,0x4,0x40);
+}
+
+void sigint_handler(int sigNum) {
+    clearScreen();
+    exit(0);
+}
+
+int main(void) {
+    signal(SIGINT, sigint_handler);
+
+    Screen mainScreen;
+    initializeScreen(&mainScreen);
+    logger_set_file_path("log.txt");
+
+    demoLayout(&mainScreen);
 
     while (1) {
+        logger_log("stuffHappens");
         generateView(&mainScreen);
     }
 }
