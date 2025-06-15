@@ -65,7 +65,6 @@ int main(void) {
 	demoLayout(&mainScreen);
 
 	while (1) {
-		logger_log(DEFAULT_LOGGER, "someLogs", INFO);
 		generateView(&mainScreen);
 	}
 }
