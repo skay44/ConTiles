@@ -1,5 +1,5 @@
 //
-// Created by Ja on 5/24/2025.
+// Created by Skay44 on 5/24/2025.
 //
 
 #ifndef ROW_H
@@ -11,10 +11,10 @@
 typedef struct Column Column;
 
 typedef struct Row {
-	float relativeHeight;
+	float relative_height;
 	uint32 id;
-	short rimStyle;
-	short insideStyle;
+	short rim_style;
+	short inside_style;
 	GenericList column_list;
 } Row;
 

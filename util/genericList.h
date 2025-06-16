@@ -1,5 +1,5 @@
 //
-// Created by Ja on 5/23/2025.
+// Created by Skay44 on 5/23/2025.
 //
 
 #ifndef GENERICLIST_H
@@ -10,37 +10,45 @@
 typedef struct GenericNode GenericNode;
 
 typedef struct GenericList {
-  uint32 elementSize;
-  GenericNode *head;
-  GenericNode *tail;
-  GenericNode *iterator; //iterator breaks after removing elements
+	uint32 elementSize;
+	GenericNode* head;
+	GenericNode* tail;
+	GenericNode* iterator; //iterator breaks after removing elements
 } GenericList;
 
-typedef struct GenericNode{
-  void* value;
-  GenericNode* next;
-  GenericNode* prev;
+typedef struct GenericNode {
+	void* value;
+	GenericNode* next;
+	GenericNode* prev;
 } GenericNode;
 
-void initList(GenericList* list, uint32 elementSize);
+void init_list(GenericList* list, uint32 elementSize);
 
-void* addNode(GenericList* list);
-void deleteLast(GenericList* list);
-void deleteFirst(GenericList* list);
-void* getFirst(GenericList* list);
-void* getLast(GenericList* list);
+void* add_node(GenericList* list);
 
-void* getNext(GenericList* list);
-void* getPrev(GenericList* list);
+void delete_last(GenericList* list);
+
+void delete_first(GenericList* list);
+
+void* get_first(GenericList* list);
+
+void* get_last(GenericList* list);
+
+void* get_next(GenericList* list);
+
+void* get_prev(GenericList* list);
+
 void* current(GenericList* list);
-GenericNode* getIterator(GenericList* list);
-void resetIterator(GenericList* list);
 
-void deleteAll(GenericList* list);
+GenericNode* get_iterator(GenericList* list);
 
-void printAllData(GenericList* list);
+void reset_iterator(GenericList* list);
 
-int getListSize(GenericList* list);
+void delete_all(GenericList* list);
+
+void print_all_data(GenericList* list);
+
+int get_list_size(GenericList* list);
 
 //TODO removing at index, inserting in first empty place
 

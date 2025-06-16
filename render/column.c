@@ -1,20 +1,20 @@
 //
-// Created by Ja on 5/24/2025.
+// Created by Skay44 on 5/24/2025.
 //
+
 #include "column.h"
 #include "genericList.h"
 #include "row.h"
 
-Row* addRowToColumn(Column* column, float height, short rimStyle, short insideStyle){
-	Row* row = addNode(&column->row_list);
-	row->relativeHeight = height;
-	row->rimStyle = rimStyle;
-	row->insideStyle = insideStyle;
-	initList(&row->column_list, sizeof(Column));
-
+Row* add_row_to_column(Column* column, const float height, const short rim_style, const short inside_style) {
+	Row* row = add_node(&column->row_list);
+	row->relative_height = height;
+	row->rim_style = rim_style;
+	row->inside_style = inside_style;
+	init_list(&row->column_list, sizeof(Column));
 	return row;
 }
 
-Row* addRowToColumnS(Column* column, float height){
-	return addRowToColumn(column, height, 1,1);
+Row* add_row_to_column_s(Column* column, const float height) {
+	return add_row_to_column(column, height, 1, 1);
 }

@@ -1,5 +1,5 @@
 //
-// Created by Ja on 5/23/2025.
+// Created by Skay44 on 5/23/2025.
 //
 
 #ifndef SCREEN_H
@@ -9,18 +9,25 @@
 #include "consoleSwap.h"
 #include "column.h"
 
+extern short const RAINBOW_ANSI_SIZE;
+extern short const RainbowANSI[];
+
+extern short const GRAYSCALE_ANSI_SIZE;
+extern short const GrayscaleANSI[];
+
 typedef struct Screen {
-	int currentID;
+	int current_id;
 	GenericList generic_list;
 	ConsoleSwap swap;
-	vec2uint32 prevSize;
+	vec2uint32 prev_size;
 } Screen;
 
-void generateView(Screen* screen);
-void initializeScreen(Screen* screen);
-Column* addColumnToScreen(Screen* screen, float width, short rimStyle, short insideStyle);
-Column* addColumnToScreenS(Screen* screen, float width);
+void generate_view(Screen* screen);
+
+void initialize_screen(Screen* screen);
+
+Column* add_column_to_screen(Screen* screen, float width, short rim_style, short inside_style);
+
+Column* add_column_to_screen_s(Screen* screen, float width);
 
 #endif //SCREEN_H
-
-

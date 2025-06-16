@@ -1,5 +1,5 @@
 //
-// Created by Ja on 5/23/2025.
+// Created by Skay44 on 5/23/2025.
 //
 
 #ifndef SYSTEM_H
@@ -9,19 +9,23 @@
 #include "const.h"
 #include "consoleSwap.h"
 
-typedef enum OS{
-  windows,
-  linux,
-  android,
-  unknown
-}OS;
+typedef enum OS {
+	windows,
+	linux,
+	android,
+	unknown
+} OS;
 
 OS getOS();
 
-vec2uint32 getScreenSize();
-void clearScreen();
-void writeChar(char c, vec2uint32 position);
-void initConsole();
+vec2uint32 get_screen_size();
+
+void clear_screen();
+
+void write_char(char c, vec2uint32 position);
+
+void init_console();
+
 void write_buffer_on_screen_buffer(ConsoleSwap* swap);
 
 
