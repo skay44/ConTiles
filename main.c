@@ -25,9 +25,26 @@ void sigint_handler(int sigNum) {
 	exit(0);
 }
 
+void handle_arguments(int argc, char** argv) {
+	if (argc > 1) {
+		if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0) {
+			printf("ConTiles Version 0.0.1\n");
+		}
+		if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
+			printf("Usage: %s [OPTION]\n"
+				   "ConTiles - Console tiling manager\n\n"
+				   "Options:\n"
+				   "  -h, --help		Display this help message\n"
+				   "  -v, --version		Display version information\n",
+				   argv[0]);
+		}
+		exit(0);
+	}
+}
 
+int main(int argc, char** argv) {
+	handle_arguments(argc, argv);
 
-int main(void) {
 	signal(SIGINT, sigint_handler);
 	init_loggers();
 
