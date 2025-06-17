@@ -64,12 +64,7 @@ static bool check_if_should_log(const LogType log_type, const char log_level) {
 	}
 }
 
-void logger_log(const uint32 handle, const LogType log_type, const char* data, ...) {
-	const auto logger = (Logger *) gv_get_at(&g_loggers, handle);
-	if (!check_if_should_log(log_type, logger->log_level)) {
-		return;
-	}
-
+void logger_log_v(const Logger* logger, const LogType log_type, const char* data, const va_list args) {
 	time_t rawtime;
 	struct tm* timeinfo;
 	struct timeval timesecs;
@@ -90,14 +85,23 @@ void logger_log(const uint32 handle, const LogType log_type, const char* data, .
 	char* logtypestr = log_type_to_str(log_type);
 	fwrite(logtypestr, 1, strlen(logtypestr), logger->file);
 
-	va_list args;
-	va_start(args, data);
-
-	fprintf(logger->file, data, args);
-
-	va_end(args);
+	vfprintf(logger->file, data, args);
 
 	fwrite("\n", 1, 1, logger->file);
+}
+
+
+void logger_log(const uint32 handle, const LogType log_type, const char* data, ...) {
+	if (!data) return;
+	const auto logger = (Logger *) gv_get_at(&g_loggers, handle);
+	if (!check_if_should_log(log_type, logger->log_level)) {
+		return;
+	}
+
+	va_list args;
+	va_start(args, data);
+	logger_log_v(logger, log_type, data, args);
+	va_end(args);
 }
 
 inline void set_logger_level(const uint32 handle, const char log_level) {
@@ -117,11 +121,17 @@ void set_logger_path_auto(char* path) {
 }
 
 void logger_log_auto(const LogType log_type, const char* data, ...) {
+	if (!data) return;
 	if (!g_default_logger_set) return;
+
+	const auto logger = (Logger *) gv_get_at(&g_loggers, g_default_logger);
+	if (!check_if_should_log(log_type, logger->log_level)) {
+		return;
+	}
 
 	va_list args;
 	va_start(args, data);
-	logger_log(g_default_logger, log_type, data, args);
+	logger_log_v(logger, log_type, data, args);
 	va_end(args);
 }
 

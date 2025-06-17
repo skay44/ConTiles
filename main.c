@@ -56,7 +56,6 @@ int main(int argc, char** argv) {
 	initialize_screen(&mainScreen);
 	demoLayout(&mainScreen);
 
-
 	while (1) {
 		generate_view(&mainScreen);
 	}
