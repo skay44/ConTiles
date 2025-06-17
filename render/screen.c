@@ -67,7 +67,7 @@ void calculate_row_height(Row* rows[], int height[], const int list_size, const 
 			height[i] = (int) exactValue + 1 + height[i - 1];
 			roundedDown = false;
 		}
-		logger_log_auto(DEBUG, "calculating row height: %d", 125);
+		logger_log_auto(DEBUG, "calculating row height: { row: %d, height: %d }", i, height[i]);
 	}
 	height[list_size] = scr_size.y;
 }
@@ -90,6 +90,7 @@ void calculate_column_width(Column* columns[], int width[], const int list_size,
 			width[i] = (int) exact_value + 1 + width[i - 1];
 			rounded_down = false;
 		}
+		logger_log_auto(DEBUG, "calculating column width: { column: %d, width: %d }", i, width[i]);
 	}
 	width[list_size] = scr_size.x;
 }
